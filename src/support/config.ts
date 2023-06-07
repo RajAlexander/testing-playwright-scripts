@@ -1,6 +1,7 @@
 import { LaunchOptions } from '@playwright/test';
 const browserOptions: LaunchOptions = {
-  slowMo: 0,
+  // wfretail-qa.wildfork.ca environment is slow, so we had to increase the timeout
+  slowMo: 12000,
   headless: false,
   args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'],
   firefoxUserPrefs: {
@@ -14,5 +15,5 @@ export const config = {
   browserOptions,
   BASE_URL: 'https://wfretail-qa.wildfork.ca', // https://wfretail-qa.wildfork.ca // https://playwright.dev 
   IMG_THRESHOLD: { threshold: 0.4 },
-  BASE_API_URL: '', // https://catfact.ninja/
+  BASE_API_URL: '', // https://catfact.ninja/tg
 };
