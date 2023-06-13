@@ -48,6 +48,7 @@ Then(
     productTypeText === 'specialtymeats' ? (productTypeText = 'SpecialtyMeats') : productTypeText;
     productTypeText === 'sausagesgroundmeat' ? (productTypeText = 'sausagesgroundmeats') : productTypeText;
     productTypeText === 'bakerydairydesserts' ? (productTypeText = 'BakeryDairyDesserts') : productTypeText;
+    productTypeText === 'spicessauces' ? (productTypeText = 'complements') : productTypeText;
 
     const expectedUrl = process.env.BASE_URL + '/en-CA/collections/' + productTypeText + '/';
     const currentUrl = page.url();

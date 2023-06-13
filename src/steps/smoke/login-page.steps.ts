@@ -3,7 +3,7 @@ import { Given, When } from '@cucumber/cucumber';
 import * as jbsInstance from '../../support/page-objects/jbsInstance';
 
 
-Given('I am on the homepage', function (this: ICustomWorld) {
+Given('I am on the homepage', function () {
   jbsInstance.homePage.open(this.page!);
   //jbsInstance.homePage.verifyURL();
   // const page = this.page!;
