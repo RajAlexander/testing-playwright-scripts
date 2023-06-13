@@ -1,10 +1,13 @@
 import { ICustomWorld } from '../../support/custom-world';
 import { Given, When } from '@cucumber/cucumber';
+import * as jbsInstance from '../../support/page-objects/jbsInstance';
 
-Given('I am on the homepage', async function (this: ICustomWorld) {
-  // jbsInstance.homePage.verifyURL();
-  const page = this.page!;
-  await page.goto(process.env.BASE_URL);
+
+Given('I am on the homepage', function (this: ICustomWorld) {
+  jbsInstance.homePage.open(this.page!);
+  //jbsInstance.homePage.verifyURL();
+  // const page = this.page!;
+  // await page.goto(process.env.BASE_URL);
 });
 
 When('I click the {string} button', async function (this: ICustomWorld, button: string) {
