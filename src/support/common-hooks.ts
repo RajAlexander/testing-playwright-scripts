@@ -1,40 +1,26 @@
 import { ICustomWorld } from './custom-world';
-import { config } from './config';
 import { Before, After, BeforeAll, AfterAll, Status, setDefaultTimeout } from '@cucumber/cucumber';
 import {
-  chromium,
   ChromiumBrowser,
-  firefox,
   FirefoxBrowser,
-  webkit,
   WebKitBrowser,
   ConsoleMessage,
   request,
 } from '@playwright/test';
 import { ITestCaseHookParameter } from '@cucumber/cucumber/lib/support_code_library_builder/types';
 import { ensureDir } from 'fs-extra';
+import { launchBrowser } from '../helper/browsers/browserManager';
+import { getEnv } from '../helper/env/env';
+//import * as jbsInstance from '../support/page-objects/jbsinstance';
 
 let browser: ChromiumBrowser | FirefoxBrowser | WebKitBrowser;
 const tracesDir = 'traces';
 
-declare global {
-  // eslint-disable-next-line no-var
-  var browser: ChromiumBrowser | FirefoxBrowser | WebKitBrowser;
-}
-
 setDefaultTimeout(process.env.PWDEBUG ? -1 : 60 * 1000);
 
 BeforeAll(async function () {
-  switch (config.browser) {
-    case 'firefox':
-      browser = await firefox.launch(config.browserOptions);
-      break;
-    case 'webkit':
-      browser = await webkit.launch(config.browserOptions);
-      break;
-    default:
-      browser = await chromium.launch(config.browserOptions);
-  }
+  getEnv();
+  browser = await launchBrowser();
   await ensureDir(tracesDir);
 });
 
@@ -58,7 +44,7 @@ Before(async function (this: ICustomWorld, { pickle }: ITestCaseHookParameter) {
   });
   this.server = await request.newContext({
     // All requests we send go to this API endpoint.
-    baseURL: config.BASE_API_URL,
+    baseURL: process.env.BASE_API_URL,
   });
 
   await this.context.tracing.start({ screenshots: true, snapshots: true });

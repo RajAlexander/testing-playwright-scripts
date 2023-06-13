@@ -4,19 +4,6 @@
 
 A starter repo for writing E2E tests based on Cucumber(7) with Playwright using Typescript.
 
-## The Why
-[Read](https://tally-b.medium.com/e2e-testing-with-cucumber-and-playwright-9584d3ef3360) or [watch](https://www.youtube.com/watch?v=PUVFmhYJNJA&list=PLwwCtx3xQxlVMZzS4oi2TafVRngQ1wF_0&index=2). 
-
-## Can we use XXX from playwright in the playwright-cucumber project? 
-
-The playwright-cucumber project started when playwright was a browser automation library. It did not have a test runner, hence cucumber-js was used as the test runner and PW used for the automation.
-Since then PW added their amazing PW test library which is a test runner. But, sadly, it overlaps the functionality provided by cucumber-js. Therefore you need to make the decision now of which runner you want to run: cucumber for BDD style tests or PW test for “normal” tests. 
-Some of the features provided by PW test are also available in cucumber-js, such as parallel run and different configurations (profiles in cucumber-js terms), but may require a different configuration. 
-
-## Kudos
-
-This repository is based on the [Cucumber-typescript-starter](https://github.com/hdorgeval/cucumber7-ts-starter/) repo.
-
 ## What's inside
 
 - Typescript setup for writing steps with eslint/typescript and prettier
@@ -30,7 +17,34 @@ This repository is based on the [Cucumber-typescript-starter](https://github.com
 
 ## Usage
 
-Create a repo based on this template and start writing your tests.
+## Setup
+
+`npm ci` to install dependencies.
+
+## Testing
+
+`npm run test:lint` runs tslint
+`npm run test:prettier` runs tslint
+`npm run cy:open:{config}` runs cypress interactive
+`npm run cy:test:{config}` runs cypress headless
+
+where `{config}` is:
+
+`e2e` - e2e tests
+`int` - integration tests
+`smoke` - smoke tests
+`do-func` - dynamic orchestration functional tests
+
+Note: To run playwright tests, its recommended to the application using the Makefile `start` command. Additionally, the web project should be built by running `npm run release`. You'll also need to create a `pw.env.json` file in the project folder. This file should consist of the base URL (system you want to test against) and the admin username and password. Example:
+
+```json
+{
+  "CYPRESS_baseUrl": "https://localhost",
+  "USERNAME": "admin",
+  "PASSWORD": "MY@dm1nP@55w0rd",
+  "EMAIL_USER": "YOUR EMAIL ADDRESS"
+}
+```
 
 ## To run your tests
 
@@ -52,10 +66,6 @@ One Windows you need to write
 set BROWSER=firefox
 npm run test
 ```
-
-## Working with Page Objects
-
-I am not fond of the Page Object Model (POM) for testing. It feels like a leftover from Java world, and I do not think it fits the Javascript world. However, you can check [this PR](https://github.com/Tallyb/cucumber-playwright/pull/95/files) to see POM implementation. 
 
 ## Debugging Features
 
@@ -83,7 +93,6 @@ The last reporter/formatter found on the cucumber-js command-line wins:
 
 In [cucumber.mjs](cucumber.mjs) file, modify the options.
 
-
 To use Allure reporting, you can run with env param: `USE_ALLURE=1`, and then use the `npm run allure` to show the report.
 
 ## To ignore a scenario
@@ -107,5 +116,5 @@ To use Allure reporting, you can run with env param: `USE_ALLURE=1`, and then us
 - Modify the `package.json` in `"report": "xdg-open reports/report.html"`
 
 ## To view allure report
-- run the command `npm run allure`.
 
+- run the command `npm run allure`.

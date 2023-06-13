@@ -1,6 +1,3 @@
-// Added by https://github.com/ortsevlised
-
-import { config } from '../support/config';
 import { ICustomWorld } from '../support/custom-world';
 import { ensureFile, pathExists } from 'fs-extra';
 import pixelmatch from 'pixelmatch';
@@ -31,7 +28,7 @@ export function getImagePath(
     'screenshots',
     customWorld.feature?.uri || '',
     options?.skipOs ? '' : process.platform,
-    config.browser,
+    process.env.BROWSER,
     `${name}.png`,
   );
 }
@@ -71,7 +68,7 @@ export async function compareToBaseImage(
 export function getDifference(
   img1: PNG,
   img2: PNG,
-  threshold = config.IMG_THRESHOLD,
+  threshold = { threshold: 0.4 },
 ): Buffer | undefined {
   const { width, height } = img2;
   const diff = new PNG({ width, height });
