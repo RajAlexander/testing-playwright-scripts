@@ -7,7 +7,7 @@
     "api": "DEBUG=pw:api cross-env ENV=test cucumber-js",
     "build": "rimraf build && npm run format && npm run lint && tsc && npm run cucumber-check",
     "cucumber-check": "cross-env ENV=test cucumber-js features/**/*.feature --dry-run --require env/set-environment-variables.ts --require world/custom-world.ts --require step-definitions/**/*.ts --require hooks/**/*.ts  --require-module ts-node/register --format-options \"{\\\"snippetInterface\\\": \\\"async-await\\\"}\" --format summary --format progress --format progress-bar  --publish-quiet",
-    "debugw": "set PWDEBUG=1 & set DEBUG=pw:api & cross-env ENV=test cucumber-js features/functional/smoke/smoke-test.feature",
+    "debugw": "set PWDEBUG=1 & set DEBUG=pw:api & cross-env ENV=prod cucumber-js features/functional/smoke/smoke-test.feature",
     "debug": "PWDEBUG=1 DEBUG=pw:api cross-env ENV=test cucumber-js",
     "video": "PWVIDEO=1 cross-env ENV=test cucumber-js",
     "eslint-fix": "eslint ./ --ext .js,.ts,.tsx --fix",

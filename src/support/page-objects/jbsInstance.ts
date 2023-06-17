@@ -1,16 +1,23 @@
 // // tslint:disable: tsr-detect-non-literal-regexp
 
+import { Page } from '@playwright/test';
 import { ICustomWorld } from '../custom-world';
+//import("playwright-core").Page
 
 import * as homePage from './home-page';
 import * as loginPage from './login-page';
+import * as plpPage from './plp-page';
 // // import * as usersListing from './main-app-objects/admin-pages/users-listing';
 // // import * as dashboardsListing from './main-app-objects/dashboardsListing';
 // // import * as appList from '../../support/page-objects/main-app-objects/app-list-all';
 // // import * as sensorEvents from '../../support/page-objects/main-app-objects/do-pages/sensors/sensors-events-interface';
 
-export { homePage, loginPage };
+export { homePage, loginPage, plpPage };
 //import faker from 'faker/locale/en';
+
+export function getCurrentURL(page: Page) {
+  return page.url();
+}
 
 // export type UserJSON = {
 //   firstName?: string;
