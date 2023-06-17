@@ -16,7 +16,7 @@ When('I scroll at the header of the page using scroll icon', async function (thi
 Then('I should see a list of product collections', async function (this: ICustomWorld, dataTable) {
   const page = this.page!;
   const expectedproductTypes = dataTable.rawTable.slice(1).map((row: string[]) => row[0]);
-  await page.waitForTimeout(4000); // Wait for 5 seconds
+  await page.waitForTimeout(5000); // Wait for 5 seconds
   actualproductTypes = await page.$$eval(
     'div.slick-list > div > div.slick-slide > div > a > span:last-child',
     (elements: any[]) => elements.map((el) => el.textContent.trim()),
