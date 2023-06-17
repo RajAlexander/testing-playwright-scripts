@@ -4,7 +4,7 @@ let browser: ChromiumBrowser | WebKitBrowser | FirefoxBrowser;
 
 const browserOptions: LaunchOptions = {
   // wfretail-qa.wildfork.ca environment is slow, so we had to increase the timeout
-  slowMo: 2000, // + process.env.SLOWMO, // 2000, //
+  slowMo: 3000, // + process.env.SLOWMO, // 2000, //
   headless: true, // !!process.env.HEADLESS,  // false, // true, //
   args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'],
   firefoxUserPrefs: {

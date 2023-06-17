@@ -34,7 +34,7 @@ export function verifyURL() {
 //   });
 // }
 
-export async function performLogin(page: Page) {
+export function performLogin(page: Page) {
   // await page.route('/api/user/login', route => {
   //   route.continue();
   // }).as('loginRequest');
@@ -47,11 +47,11 @@ export async function performLogin(page: Page) {
   // const mainElementHandle = await page.$(mainElement);
 
   // const page = this.page!;
-  await page
+  page!
     .getByRole('form', { name: 'checkout login form' })
     .getByTestId('form_field-email')
     .fill('test.wildfork@yopmail.com');
-  await page
+  return page!
     .getByRole('form', { name: 'checkout login form' })
     .getByTestId('form_field-password')
     .fill('Password@1');
@@ -81,9 +81,10 @@ export async function performLogin(page: Page) {
   //   });
 }
 
-
-
-
+export function clickLoginButton(page: Page) {
+  //const page = this.page!;
+  return page!.getByTestId('form_field-button_submit').click();
+}
 
 // export function performDisabledLogin(username: string, password: string) {
 //   cy.get(mainElement).within(() => {

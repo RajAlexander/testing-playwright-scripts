@@ -3,13 +3,13 @@
 import { ICustomWorld } from '../custom-world';
 
 import * as homePage from './home-page';
-//import * as loginPage from './login-page';
+import * as loginPage from './login-page';
 // // import * as usersListing from './main-app-objects/admin-pages/users-listing';
 // // import * as dashboardsListing from './main-app-objects/dashboardsListing';
 // // import * as appList from '../../support/page-objects/main-app-objects/app-list-all';
 // // import * as sensorEvents from '../../support/page-objects/main-app-objects/do-pages/sensors/sensors-events-interface';
 
-export { homePage };
+export { homePage, loginPage };
 //import faker from 'faker/locale/en';
 
 // export type UserJSON = {
