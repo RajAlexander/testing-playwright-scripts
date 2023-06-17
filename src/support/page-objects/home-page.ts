@@ -18,14 +18,14 @@ export function clickScrollIcon(page: Page) {
   return page!.getByTestId(menuBarRightArrowSelector).getByRole('img').click();
 }
 
-export function verifyProductCollections(page: Page) {
+export function getListOfAllProductTypes(page: Page) {
   return page!.$$eval(
     'div.slick-list > div > div.slick-slide > div > a > span:last-child',
     (elements: any[]) => elements.map((el) => el.textContent.trim()),
   );
 }
 
-export function clickRandomProductType(page: Page, actualproductTypes: string | any[]) {
+export function getProductType(page: Page, actualproductTypes: string | any[]) {
   // Code to click on any random product type
   const randomIndex = Math.floor(Math.random() * actualproductTypes.length);
   return page!.$(`span:has-text("${actualproductTypes[randomIndex]}")`);
